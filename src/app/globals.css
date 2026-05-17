@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&family=Manrope:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+:root {
+  /* Premium Light Theme (Frosted Glass) */
+  --background: #f8fafc;
+  --foreground: #334155;
+  
+  --card-bg: rgba(255, 255, 255, 0.55);
+  --card-border: rgba(255, 255, 255, 0.8);
+  --card-border-hover: rgba(255, 255, 255, 1);
+  --card-shadow: 0 8px 32px -4px rgba(15, 23, 42, 0.04), 0 4px 12px -2px rgba(15, 23, 42, 0.02);
+  
+  --accent-amber: #8b5cf6; /* Vibrant Violet */
+  --accent-amber-glow: rgba(139, 92, 246, 0.15);
+  
+  --accent-indigo: #0d9488; /* Rich Teal */
+  --accent-indigo-glow: rgba(13, 148, 136, 0.15);
+  
+  --text-muted: #64748b;
+  --text-warm-dim: #475569;
+  
+  --bg-dots: rgba(15, 23, 42, 0.03);
+}
+
+.dark {
+  /* Premium Dark Theme (Midnight Glass) */
+  --background: #090a0f;
+  --foreground: #f8fafc;
+  
+  --card-bg: rgba(15, 17, 26, 0.5); 
+  --card-border: rgba(255, 255, 255, 0.06); 
+  --card-border-hover: rgba(255, 255, 255, 0.12);
+  --card-shadow: 0 12px 40px -8px rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+  
+  --accent-amber: #a78bfa; /* Glowing Lavender */
+  --accent-amber-glow: rgba(167, 139, 250, 0.2);
+  
+  --accent-indigo: #2dd4bf; /* Glowing Teal */
+  --accent-indigo-glow: rgba(45, 212, 191, 0.2);
+  
+  --text-muted: #94a3b8;
+  --text-warm-dim: #cbd5e1;
+  
+  --bg-dots: rgba(255, 255, 255, 0.02);
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-amber-accent: var(--accent-amber);
+  --color-indigo-accent: var(--accent-indigo);
+  --font-sans: 'Manrope', sans-serif;
+  --font-display: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Base resets & calming dotted paper background */
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: 'Manrope', sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+  /* Premium dynamic background */
+  background-image: 
+    radial-gradient(circle at 15% 50%, var(--accent-indigo-glow), transparent 25%),
+    radial-gradient(circle at 85% 30%, var(--accent-amber-glow), transparent 25%),
+    radial-gradient(var(--bg-dots) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 24px 24px;
+  background-attachment: fixed;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* Premium Soothing Scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--card-border);
+  border-radius: 99px;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-indigo);
+}
+
+/* Premium Glassmorphic Panels */
+.glass-panel {
+  background: var(--card-bg);
+  backdrop-filter: blur(24px) saturate(120%);
+  -webkit-backdrop-filter: blur(24px) saturate(120%);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--card-shadow);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-panel-hover:hover {
+  border-color: var(--card-border-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 48px -12px rgba(0, 0, 0, 0.15), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+}
+
+.glass-input {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(15, 23, 42, 0.12); /* Visible slate border for light mode */
+  color: var(--foreground);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
+  transition: all 0.3s ease;
+}
+
+.dark .glass-input {
+  background: rgba(0, 0, 0, 0.25); /* Recessed darker background */
+  border: 1px solid rgba(255, 255, 255, 0.15); /* Visible frosty border */
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.4); /* Inner shadow for depth */
+}
+
+.glass-input:focus {
+  outline: none;
+  border-color: var(--accent-indigo);
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 0 3px var(--accent-indigo-glow), inset 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.dark .glass-input:focus {
+  background: rgba(15, 17, 26, 0.9);
+  box-shadow: 0 0 0 3px var(--accent-indigo-glow), inset 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Stripped glowing effects down to standard premium fonts */
+.text-glow-amber {
+  text-shadow: none;
+}
+
+.text-glow-indigo {
+  text-shadow: none;
+}
+
+/* Gentle transitions & animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Quiet pulsing indicators for typing */
+@keyframes typing-bounce {
+  0%, 100% { transform: translateY(0); opacity: 0.4; }
+  50% { transform: translateY(-3px); opacity: 1; }
+}
+
+.typing-dot {
+  animation: typing-bounce 1.2s infinite ease-in-out;
+}
+.typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* Very subtle breathing effects on active elements (Opacity-based, no glowing neons) */
+@keyframes breathing-border-indigo {
+  0%, 100% { border-color: rgba(162, 238, 246, 0.15); }
+  50% { border-color: rgba(162, 238, 246, 0.4); }
+}
+
+.breathing-indigo {
+  animation: breathing-border-indigo 4s infinite ease-in-out;
+}
+
+@keyframes breathing-border-amber {
+  0%, 100% { border-color: rgba(198, 193, 247, 0.15); }
+  50% { border-color: rgba(198, 193, 247, 0.4); }
+}
+
+.breathing-amber {
+  animation: breathing-border-amber 4s infinite ease-in-out;
+}
+
+/* Clean markdown formatting */
+.markdown-content p {
+  margin-bottom: 0.65rem;
+}
+.markdown-content p:last-child {
+  margin-bottom: 0;
+}
+.markdown-content ul, .markdown-content ol {
+  margin-bottom: 0.65rem;
+  padding-left: 1.15rem;
+}
+.markdown-content li {
+  margin-bottom: 0.2rem;
+}
+.markdown-content strong {
+  color: var(--accent-amber);
+  font-weight: 600;
+}
+.markdown-content code {
+  background: var(--card-border);
+  padding: 0.1rem 0.25rem;
+  border-radius: 4px;
+  font-size: 0.85em;
+  font-family: monospace;
+}
